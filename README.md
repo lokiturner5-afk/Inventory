@@ -74,4 +74,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## 📞 Contact
 **Developer:** Loki  
-**Email:** yourname@example.com
+**Email:** lokiturn5@gmail.com

@@ -28,7 +28,7 @@ class CRUDItem(CRUDBase[models.Item, ItemCreate]):
 
     def create_item(self, db: Session, obj_in: ItemCreate):
         # Auto-generate SKU if not provided
-        sku = obj_in.sku or self._generate_sku(db, obj_in.name)
+        sku =  self._generate_sku(db, obj_in.name)
 
         item = models.Item(
             name=obj_in.name,

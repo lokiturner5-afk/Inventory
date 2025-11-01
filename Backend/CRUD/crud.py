@@ -33,7 +33,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType]):
         return db_obj
     
     def delete(self, db:Session, id:int):
-        obj = self.get(db, id)
+        obj = self.get(id, db)
         if obj:
             db.delete(obj)
             db.commit()

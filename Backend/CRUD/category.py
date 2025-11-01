@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 import models
 from schemas.categoryschema import CategoryCreate
-from crud import CRUDBase
+from CRUD.crud import CRUDBase
 
 
 class CRUDCategory(CRUDBase[models.Category, CategoryCreate]):

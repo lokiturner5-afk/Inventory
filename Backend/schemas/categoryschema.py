@@ -1,8 +1,9 @@
 from typing import  Optional, List
 from schemas.BaseSchema import BaseSchema
-from categoryimageschema import CategoryImageCreate
+from schemas.categoryimageschema import CategoryImageCreate
+from pydantic import BaseModel
 
-class CategoryBase(BaseSchema):
+class CategoryBase(BaseModel):
     style: str
     category_type: str
     material: str
@@ -11,5 +12,5 @@ class CategoryBase(BaseSchema):
 class CategoryCreate(CategoryBase):
     images: Optional[List[CategoryImageCreate]] = None
 
-class CategoryRead(CategoryBase):
+class CategoryRead(CategoryBase, BaseSchema):
     id:int

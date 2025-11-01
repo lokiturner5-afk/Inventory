@@ -10,7 +10,6 @@ from schemas.BaseSchema import BaseSchema
 
 class ItemBase(BaseModel):
     name: str
-    sku: str
     description: Optional[str] = None
     category_id: Optional[int] = None
     supplier_id: Optional[int] = None
@@ -26,4 +25,5 @@ class ItemCreate(ItemBase):
 
 class ItemRead(ItemBase, BaseSchema):
     id: Optional[int] = None
-    images: Optional[List[ItemImageCreate]] = None
+    sku: str
+    

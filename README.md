@@ -40,7 +40,7 @@ This system helps keep track of sales and purchases and provides clear data whic
 ```
 `Backend: `
 ```bash
-    python 3.11
+    python 3.13
 ```
 
 ## Installation

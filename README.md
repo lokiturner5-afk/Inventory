@@ -9,6 +9,7 @@
 - [About](#about)
 - [Features](#features)
 - [Tech Stack](#tech_stack)
+- [Requirement](#requirement)
 - [Installation](#installation)
 - [Usage](#usage)
 - [API Endpoints](#api_endpoints)
@@ -30,6 +31,17 @@ This system helps keep track of sales and purchases and provides clear data whic
 - **Backend:** FastAPI
 - **Database:** PostgreSQL
 - **Authentication:** JWT
+
+## Requirement
+`Frontend: `
+```bash
+    node v24.8.0
+    npm v11.6.0
+```
+`Backend: `
+```bash
+    python 3.11
+```
 
 ## Installation
 `Clone the repository: `

@@ -22,6 +22,7 @@ class CRUDBase(Generic[ModelType, CreateSchemaType]):
         db.add(obj)
         db.commit()
         db.refresh(obj)
+        
         return obj
     
 

@@ -2,8 +2,9 @@ from schemas.BaseSchema import BaseSchema
 from typing import Optional, List
 from decimal import Decimal
 from schemas.saleitemBase import SaleItemCreate
+from pydantic import BaseModel
 
-class SaleBase(BaseSchema):
+class SaleBase(BaseModel):
     customer_id: Optional[int] = None
     warehouse_id: Optional[int] = None
     sale_type: Optional[str] = None
@@ -13,8 +14,8 @@ class SaleBase(BaseSchema):
 
 
 class SaleCreate(SaleBase):
-    sale_items = Optional[List[SaleItemCreate]]
+    sale_items : Optional[List[SaleItemCreate]] = None
 
 
-class SaleRead(SaleBase):
+class SaleRead(SaleBase, BaseSchema):
     id: int

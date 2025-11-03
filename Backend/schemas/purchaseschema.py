@@ -2,9 +2,9 @@ from schemas.BaseSchema import BaseSchema
 from typing import Optional, List
 from decimal import Decimal
 from schemas.purchaseItemschema import PurchaseItemCreate
+from pydantic import BaseModel
 
-
-class PurchaseBase(BaseSchema):
+class PurchaseBase(BaseModel):
     supplier_id: Optional[int] = None
     warehouse_id: Optional[int] = None
     total_amount: Decimal = 0
@@ -13,8 +13,8 @@ class PurchaseBase(BaseSchema):
 
 
 class PurchaseCreate(PurchaseBase):
-    purchase_items = Optional[List[PurchaseItemCreate]]
+    purchase_items : Optional[List[PurchaseItemCreate]] = None
 
 
-class PurchaseRead(PurchaseBase):
+class PurchaseRead(PurchaseBase, BaseSchema):
     id: int

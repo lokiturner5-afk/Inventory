@@ -18,7 +18,7 @@ def add_product(item:ItemCreate, db:Session=Depends(get_db)):
     return item_crud.create_item(db, item)
 
 @routes.patch("/update-item/{item_id}", response_model=ItemRead)
-def update_product(item_id:int, item:ItemCreate, db:Session=Depends(get_db)):
+def update_product( item:ItemCreate, db:Session=Depends(get_db)):
     return item_crud.update(db, models.Item,  item)
 
 @routes.delete("/delete-item/{item_id}")

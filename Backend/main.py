@@ -1,7 +1,18 @@
 from fastapi import FastAPI
 from database import connect
 from contextlib import asynccontextmanager
-from routes import signuproute, usersroutes, productsroute, supplierroute, categoryroute
+from routes import (
+    signuproute, 
+    usersroutes, 
+    productsroute, 
+    supplierroute, 
+    categoryroute, 
+    category_images,
+    salesroutes,
+    purchaseroutes,
+    stockmovementroutes,
+    warehouseroute,
+    )
 
 
 @asynccontextmanager
@@ -20,7 +31,12 @@ app.include_router(usersroutes.routes)
 app.include_router(productsroute.routes)
 app.include_router(supplierroute.routes)
 app.include_router(categoryroute.routes)
+app.include_router(category_images.routes)
+app.include_router(salesroutes.routes)
+app.include_router(purchaseroutes.routes)
+app.include_router(stockmovementroutes.routes)
+app.include_router(warehouseroute.routes)
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run("main:app", host="localhost", port=8551, reload=True)
+    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)

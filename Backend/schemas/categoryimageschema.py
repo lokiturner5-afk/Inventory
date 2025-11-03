@@ -1,8 +1,9 @@
 from schemas.BaseSchema import BaseSchema
+from pydantic import BaseModel
 from typing import Optional
 
 
-class CategoryImageBase(BaseSchema):
+class CategoryImageBase(BaseModel):
     category_id: int
     image_url: str
     description: Optional[str] = None
@@ -13,5 +14,5 @@ class CategoryImageCreate(CategoryImageBase):
     pass
 
 
-class CategoryImageRead(CategoryImageBase):
+class CategoryImageRead(CategoryImageBase, BaseSchema):
     id: int

@@ -1,8 +1,9 @@
 
 from schemas.BaseSchema import BaseSchema
 from decimal import Decimal
+from pydantic import BaseModel
 
-class PurchaseItemBase(BaseSchema):
+class PurchaseItemBase(BaseModel):
     purchase_id: int
     item_id: int
     quantity: int
@@ -13,5 +14,5 @@ class PurchaseItemCreate(PurchaseItemBase):
     pass
 
 
-class PurchaseItemRead(PurchaseItemBase):
+class PurchaseItemRead(PurchaseItemBase, BaseSchema):
     id: int

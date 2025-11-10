@@ -3,6 +3,7 @@ from typing import Optional, List
 from decimal import Decimal
 from schemas.saleitemBase import SaleItemCreate
 from pydantic import BaseModel
+from datetime import datetime
 
 class SaleBase(BaseModel):
     customer_id: Optional[int] = None
@@ -19,3 +20,4 @@ class SaleCreate(SaleBase):
 
 class SaleRead(SaleBase, BaseSchema):
     id: int
+    sale_date: datetime

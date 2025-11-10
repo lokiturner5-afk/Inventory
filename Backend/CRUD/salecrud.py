@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from CRUD.crud import CRUDBase
 from schemas.saleschema import SaleCreate
 from schemas.saleitemBase import SaleItemCreate
+from sqlalchemy import func
 import models
 
 class CRUDSale(CRUDBase[models.Sale, SaleCreate]):
@@ -30,4 +31,17 @@ class CRUDSale(CRUDBase[models.Sale, SaleCreate]):
             db.commit()
         return sale
     
+    def get_sales_summary(self, db:Session):
+        results = (
+            db.query(
+                func.date( models.Sale.sale_date).label('date'),
+                func.sum(models.Sale.total_amount).label('total_sales')
+            )
+            .group_by(func.date( models.Sale.sale_date))
+            .order_by(func.date( models.Sale.sale_date))
+            .all()
+        )
+        return [{"date": str(r.date), "total_sales": float(r.total_sales)} for r in results]
+    
+
 sale_crud = CRUDSale(models.Sale)

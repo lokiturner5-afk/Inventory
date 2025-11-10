@@ -13,7 +13,8 @@ from routes import (
     stockmovementroutes,
     warehouseroute,
     )
-
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 
 @asynccontextmanager
 async def lifespan(app:FastAPI):
@@ -25,6 +26,16 @@ app = FastAPI(
     version="0.1.1",
     lifespan=lifespan
 )
+
+app.add_middleware (
+    CORSMiddleware,
+    allow_credentials=True,
+    allow_headers=['*'],
+    allow_methods=['*'],
+    allow_origins=['*']
+)
+
+app.add_middleware(GZipMiddleware, minimum_size=500)
 
 app.include_router(signuproute.routes)
 app.include_router(usersroutes.routes)

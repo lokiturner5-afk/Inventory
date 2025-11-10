@@ -3,11 +3,12 @@ from schemas.saleschema import SaleRead, SaleCreate
 from CRUD.salecrud import sale_crud
 from sqlalchemy.orm import Session
 from database import get_db
+from typing import List
 
 
 routes = APIRouter(prefix="/sales", tags=['Sales'])
 
-@routes.get("/get-sales", response_model=SaleRead)
+@routes.get("/get-sales", response_model=List[SaleRead])
 def get_sales(db:Session = Depends(get_db)):
     return sale_crud.get_all(db)
 
@@ -22,3 +23,7 @@ def update_sale(sale: SaleCreate, db:Session = Depends(get_db)):
 @routes.delete("/delete_item/{sale_id}")
 def delete_sale(sale_id:int, db:Session=Depends(get_db)):
     return sale_crud.delete(db, sale_id)
+
+@routes.get('/sales-summary')
+def get_sales_summary(db:Session = Depends(get_db)):
+    return sale_crud.get_sales_summary(db)

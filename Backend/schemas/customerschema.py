@@ -1,9 +1,10 @@
 from typing import  Optional
 from pydantic import  EmailStr
 from schemas.BaseSchema import BaseSchema
+from pydantic import BaseModel
 
 
-class CustomerBase(BaseSchema):
+class CustomerBase(BaseModel):
     name:str
     email:Optional[EmailStr] = None
     phone:str
@@ -15,5 +16,5 @@ class CustomerCreate(CustomerBase):
     pass
 
 
-class CustomerRead(CustomerBase):
+class CustomerRead(CustomerBase, BaseSchema):
     id: int

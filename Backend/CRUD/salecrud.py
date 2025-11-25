@@ -10,7 +10,7 @@ class CRUDSale(CRUDBase[models.Sale, SaleCreate]):
         sale = models.Sale(
             customer_id = obj_in.customer_id,
             warehouse_id=obj_in.warehouse_id,
-            sale_date=obj_in.sale_type,
+            sale_type =obj_in.sale_type,
             total_amount=obj_in.total_amount,
             status=obj_in.status,
             reference=obj_in.reference,
@@ -21,7 +21,7 @@ class CRUDSale(CRUDBase[models.Sale, SaleCreate]):
 
         if obj_in.sale_items:
             for item in obj_in.sale_items:
-                db_item = SaleItemCreate(
+                db_item = models.SaleItem(
                     item_id=item.item_id,
                     quantity=item.quantity,
                     unit_price=item.unit_price,
@@ -42,6 +42,11 @@ class CRUDSale(CRUDBase[models.Sale, SaleCreate]):
             .all()
         )
         return [{"date": str(r.date), "total_sales": float(r.total_sales)} for r in results]
+    
+    def get_recent_sales(self, db:Session, limit:int= 10):
+        return (
+            db.query(models.Sale).order_by(models.Sale.created_at.desc()).limit(limit).all()
+        )
     
 
 sale_crud = CRUDSale(models.Sale)

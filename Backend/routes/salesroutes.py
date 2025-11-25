@@ -27,3 +27,7 @@ def delete_sale(sale_id:int, db:Session=Depends(get_db)):
 @routes.get('/sales-summary')
 def get_sales_summary(db:Session = Depends(get_db)):
     return sale_crud.get_sales_summary(db)
+
+@routes.get('/recent-sales')
+def read_recent_sales(limit:int = 10, db:Session = Depends(get_db)):
+    return sale_crud.get_recent_sales(limit=limit, db=db)

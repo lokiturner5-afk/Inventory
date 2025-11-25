@@ -12,6 +12,8 @@ from routes import (
     purchaseroutes,
     stockmovementroutes,
     warehouseroute,
+    customerroute,
+    saleItemroutes,
     )
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
@@ -40,10 +42,12 @@ app.add_middleware(GZipMiddleware, minimum_size=500)
 app.include_router(signuproute.routes)
 app.include_router(usersroutes.routes)
 app.include_router(productsroute.routes)
+app.include_router(customerroute.routes)
 app.include_router(supplierroute.routes)
 app.include_router(categoryroute.routes)
 app.include_router(category_images.routes)
 app.include_router(salesroutes.routes)
+app.include_router(saleItemroutes.routes)
 app.include_router(purchaseroutes.routes)
 app.include_router(stockmovementroutes.routes)
 app.include_router(warehouseroute.routes)

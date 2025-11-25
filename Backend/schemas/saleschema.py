@@ -16,8 +16,10 @@ class SaleBase(BaseModel):
 
 class SaleCreate(SaleBase):
     sale_items : Optional[List[SaleItemCreate]] = None
+    
 
 
 class SaleRead(SaleBase, BaseSchema):
     id: int
-    sale_date: datetime
+    sale_date:datetime
+    
